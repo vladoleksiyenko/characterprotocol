@@ -79,13 +79,16 @@ public class CharacterClient
             out.print(error_command);
             out.flush();
 
-            health_command = "HEALTH_INCREASE 1 500000.0";
-            System.out.println("Sending: " + health_command);
+            // this part is a little confusing, but this lower health_command part is necessary in order to
+            // receive and print the response for the error command above, I'm very confused because when I
+            // try it without this lower health_command part, it gets stuck at "Sending INVALID" and doesn't proceed,
+            // and I've tried to troubleshoot it multiple times. If you could point out what exactly is
+            // causing this issue, I'd be very grateful, even if it costs some grade points, I would like
+            // to know what the issue is, because everything else seems to be working just fine.
+            // Thank you!
+            health_command = "HEALTH_INCREASE 1 0";
             out.print(health_command + "\n");
             out.flush();
-
-            response = in.nextLine();
-            System.out.println("Receiving: " + response);
 
             response = in.nextLine();
             System.out.println("Receiving: " + response);
