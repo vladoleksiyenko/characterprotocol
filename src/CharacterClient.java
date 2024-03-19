@@ -74,10 +74,21 @@ public class CharacterClient
             response = in.nextLine();
             System.out.println("Receiving: " + response);
 
-            damage_command = "INVALID COMMAND";
-            System.out.println("Sending: " + damage_command);
-            out.print(damage_command);
+            String error_command = "INVALID";
+            System.out.println("Sending: " + error_command);
+            out.print(error_command);
             out.flush();
+
+            health_command = "HEALTH_INCREASE 1 500000.0";
+            System.out.println("Sending: " + health_command);
+            out.print(health_command + "\n");
+            out.flush();
+
+            response = in.nextLine();
+            System.out.println("Receiving: " + response);
+
+            response = in.nextLine();
+            System.out.println("Receiving: " + response);
 
             String quit_command = "QUIT";
             System.out.println("Sending: " + quit_command);

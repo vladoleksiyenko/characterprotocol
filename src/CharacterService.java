@@ -77,31 +77,21 @@ public class CharacterService implements Runnable
         if (command.equals("HEALTH_INCREASE")) {
             double amount = in.nextDouble();
             characters.HEALTH_INCREASE(characterID, amount);
-            receivingOutput(characterID);
         } else if (command.equals("HEALTH_REDUCE")) {
             double amount = in.nextDouble();
             characters.HEALTH_REDUCE(characterID, amount);
-            receivingOutput(characterID);
         } else if (command.equals("DAMAGE_INCREASE")) {
             double amount = in.nextDouble();
             characters.DAMAGE_INCREASE(characterID, amount);
-            receivingOutput(characterID);
         } else if (command.equals("DAMAGE_REDUCE")) {
             double amount = in.nextDouble();
             characters.DAMAGE_REDUCE(characterID, amount);
-            receivingOutput(characterID);
-        } else if (command.equals("GET_HEALTH")) {
-            out.println("CURRENT HEALTH: " + characters.getHealth(characterID));
-            out.flush();
-        } else if (command.equals("GET_DAMAGE")) {
-            out.println("CURRENT DAMAGE: " + characters.getDamage(characterID));
+        } else if (!command.equals("GET_DAMAGE") && !command.equals("GET_HEALTH")) {
+            out.println("INVALID COMMAND");
             out.flush();
         }
-    }
 
-    public void receivingOutput(int characterID) {
-        out.println("Character ID: " + characterID + " | Character Health: " + characters.getHealth(characterID)
-                + " | Character Damage: " + characters.getDamage(characterID));
+        out.println(characterID + " | HEALTH: " + characters.getHealth(characterID) + " | DAMAGE: " + characters.getDamage(characterID));
         out.flush();
     }
 }
